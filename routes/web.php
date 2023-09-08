@@ -33,3 +33,8 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::resource('posts', PostController::class);
+Route::resource('comments', CommentController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('tags', TagController::class);
