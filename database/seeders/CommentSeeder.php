@@ -29,11 +29,13 @@ class CommentSeeder extends Seeder
             $postId = $faker->randomElement($postIds);
 
             // Create the comment
-            Comment::create([
+            Comment::create(
+                [
                 'content' => $faker->paragraph, // Generates a realistic paragraph
                 'user_id' => $userId,
                 'post_id' => $postId
-            ]);
+                ]
+            );
         }
     }
 }

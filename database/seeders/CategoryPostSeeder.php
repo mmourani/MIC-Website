@@ -34,10 +34,12 @@ class CategoryPostSeeder extends Seeder
                 $countOfRandomCategoryIds = rand(1, min(3, count($categoryIds)));
                 $randomCategoryIds = Arr::random($categoryIds, $countOfRandomCategoryIds);
                 foreach ($randomCategoryIds as $categoryId) {
-                    DB::table('category_post')->insert([
+                    DB::table('category_post')->insert(
+                        [
                         'post_id' => $postId,
                         'category_id' => $categoryId,
-                    ]);
+                        ]
+                    );
                 }
             } else {
                 $this->command->info("No categories available for post ID: $postId. Skipping...");

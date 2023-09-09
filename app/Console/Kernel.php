@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__.'/Commands');
 
-        require base_path('routes/console.php');
+        include base_path('routes/console.php');
 
         Commands\RefreshDatabase::class;
     }

@@ -30,21 +30,25 @@ class TeamSeeder extends Seeder
                 foreach ($userIds as $userId) {
 
                     // Assign a personal team
-                    Team::create([
+                    Team::create(
+                        [
                         'user_id' => $userId,
                         'name' => 'Personal-' . $userId,
                         'personal_team' => true
-                    ]);
+                        ]
+                    );
 
                     // Create additional teams for this user
                     $numTeams = rand(1, 3); // Random number of teams between 1 and 3
                     for ($i = 0; $i < $numTeams; $i++) {
                         $teamName = $teamNames[array_rand($teamNames)] . '-' . $userId . '-' . $i;
-                        Team::create([
+                        Team::create(
+                            [
                             'user_id' => $userId,
                             'name' => $teamName,
                             'personal_team' => false
-                        ]);
+                            ]
+                        );
                     }
                 }
 

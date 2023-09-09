@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Tag
+ *
  * @package App\Models
  */
 class Tag extends Model

@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
 
         // Create a single user manually (optional)
-        User::create([
+        User::create(
+            [
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
@@ -29,7 +30,8 @@ class UserSeeder extends Seeder
             'remember_token' => \Str::random(10),
             'current_team_id' => null,
             'profile_photo_path' => null,
-        ]);
+            ]
+        );
 
         // Create 50 random users using the UserFactory
         User::factory(50)->create();

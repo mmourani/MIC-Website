@@ -26,11 +26,13 @@ class PostSeeder extends Seeder
             $userId = $faker->randomElement($userIds);
 
             // Create the post
-            Post::create([
+            Post::create(
+                [
                 'title'   => $faker->sentence,  // Generates a random title
                 'content' => $faker->text(2000),  // Generates a text up to 2000 characters long
                 'user_id' => $userId
-            ]);
+                ]
+            );
         }
     }
 }
