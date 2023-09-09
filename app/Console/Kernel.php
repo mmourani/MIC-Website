@@ -24,6 +24,5 @@ class Kernel extends ConsoleKernel
 
         include base_path('routes/console.php');
 
-        Commands\RefreshDatabase::class;
     }
 }
