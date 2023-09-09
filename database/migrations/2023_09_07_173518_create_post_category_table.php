@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(
-            'category_post', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('post_id')->constrained()->onDelete('cascade');
-                $table->foreignId('category_id')->constrained()->onDelete('cascade');
-                $table->timestamps();
-            }
-        );
+        Schema::create('category_post', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict'); // restrict delete
+            $table->foreignId('post_id')->constrained('posts')->onDelete('restrict'); // restrict delete
+            $table->primary(['category_id', 'post_id']);
+        });
     }
 
     /**

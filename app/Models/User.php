@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -59,12 +60,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+
     /**
      * Define the relationship with the Post model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
@@ -78,6 +80,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
 
 
 }

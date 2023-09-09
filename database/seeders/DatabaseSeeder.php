@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             PostTagSeeder::class,
             TeamSeeder::class,
             CategoryPostSeeder::class,
+            ProfileSeeder::class,
             ]
         );
     }

@@ -6,19 +6,25 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\User;
-use Faker\Factory as Faker;  // Import the Faker library
+use Faker\Factory as Faker;
 
 class PostSeeder extends Seeder
 {
     public function run()
     {
         // Clear out the existing posts
-        DB::table('posts')->truncate();  // Use truncate for better performance
+        DB::table('posts')->truncate();
 
-        $faker = Faker::create();  // Initialize Faker
+        $faker = Faker::create();
 
-        // Fetch all user IDs for better randomization
-        $userIds = User::all()->pluck('id')->toArray();
+        // Fetch all existing user IDs
+        $userIds = User::pluck('id')->toArray();
+
+        // Ensure there are users to associate with posts
+        if (count($userIds) === 0) {
+            $this->command->info('No users found. Please create users before seeding posts.');
+            return;
+        }
 
         // Create 50 random posts
         foreach (range(1, 50) as $index) {
@@ -26,14 +32,13 @@ class PostSeeder extends Seeder
             $userId = $faker->randomElement($userIds);
 
             // Create the post
-            Post::create(
-                [
-                'title'   => $faker->sentence,  // Generates a random title
-                'content' => $faker->text(2000),  // Generates a text up to 2000 characters long
-                'user_id' => $userId
-                ]
-            );
+            Post::create([
+                'title' => $faker->sentence,
+                'content' => $faker->text(2000),
+                'user_id' => $userId,
+            ]);
         }
     }
 }
+
 
