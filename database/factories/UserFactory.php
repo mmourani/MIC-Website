@@ -20,7 +20,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        return array(
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
-        ];
+        );
     }
 
     /**
@@ -40,9 +40,9 @@ class UserFactory extends Factory
     {
         return $this->state(
             function (array $attributes) {
-                return [
+                return array(
                 'email_verified_at' => null,
-                ];
+                );
             }
         );
     }
@@ -59,11 +59,11 @@ class UserFactory extends Factory
         return $this->has(
             Team::factory()
                 ->state(
-                    fn (array $attributes, User $user) => [
+                    fn (array $attributes, User $user) => array(
                     'name' => $user->name.'\'s Team',
                     'user_id' => $user->id,
                     'personal_team' => true,
-                    ]
+                    )
                 )
                 ->when(is_callable($callback), $callback),
             'ownedTeams'
